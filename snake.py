@@ -9,6 +9,44 @@ WINDOW_HEIGHT = 600
 display_surface = pygame.display.set_mode((WINDOW_HEIGHT,WINDOW_HEIGHT))
 pygame.display.set_caption("~~Snake~~")
 
+#set fps and clock
+FPS = 20
+clock = pygame.time.Clock()
+
+#set game values
+SNAKE_SIZE = 20
+
+head_x = WINDOW_WIDTH//2
+head_y = WINDOW_HEIGHT//2 + 100
+
+snake_dx = 0
+snake_dy = 0
+
+score = 0
+
+#set colors
+GREEN = (0,255,0)
+DARKGREEN = (10,50,10)
+RED = (255,0,0)
+DARKRED = (150,0,0)
+WHITE = (255,255,255)
+
+#set fonts
+font = pygame.font.SysFont('gabriola', 48)
+
+#set text
+title_text = font.render("~~Snake~~", True, GREEN, DARKRED)
+title_rect = title_text.get_rect()
+title_rect.center = (WINDOW_WIDTH//2,WINDOW_HEIGHT//2)
+
+score_text = font.render("Score: " + str(score), True, GREEN, DARKRED)
+score_rect = score_text.get_rect()
+score_rect.topleft = (10,10)
+
+#set sounds and music
+
+#set images
+
 #main game loop
 running = True
 while running:
