@@ -60,7 +60,7 @@ apple_coord = (500,500, SNAKE_SIZE, SNAKE_SIZE)
 apple_rect = pygame.draw.rect(display_surface, RED, apple_coord)
 
 head_coord = (head_x, head_y, SNAKE_SIZE, SNAKE_SIZE)
-head_rect = pygame.draw.rect(display_surface, RED, head_coord)
+head_rect = pygame.draw.rect(display_surface, GREEN, head_coord)
 
 body_coords = []
 
@@ -71,6 +71,19 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+
+    display_surface.fill(WHITE)
+    #blit HUD
+    display_surface.blit(title_text, title_rect)
+    display_surface.blit(score_text, score_rect)
+
+    #blit assests
+    pygame.draw.rect(display_surface, GREEN, head_coord)
+    pygame.draw.rect(display_surface, RED, apple_coord)
+
+    #update display and tick clock
+    pygame.display.update()
+    clock.tick(FPS)
 
 #end game
 pygame.quit()
