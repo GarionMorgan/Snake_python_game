@@ -92,14 +92,26 @@ while running:
     head_y += snake_dy
     head_coord = (head_x,head_y, SNAKE_SIZE, SNAKE_SIZE)
 
+    #check for collisions
+    if head_rect.colliderect(apple_rect):
+        score += 1
+        pick_up_sound.play()
+
+        apple_x = random.randint(0, WINDOW_WIDTH - SNAKE_SIZE)
+        apple_y = random.randint(0, WINDOW_HEIGHT - SNAKE_SIZE)
+        apple_coord = (apple_x, apple_y, SNAKE_SIZE, SNAKE_SIZE)
+
+    #update HUD
+    score_text = font.render("Score: " + str(score), True, GREEN, DARKRED)
+
     display_surface.fill(WHITE)
     #blit HUD
     display_surface.blit(title_text, title_rect)
     display_surface.blit(score_text, score_rect)
 
     #blit assests
-    pygame.draw.rect(display_surface, GREEN, head_coord)
-    pygame.draw.rect(display_surface, RED, apple_coord)
+    head_rect = pygame.draw.rect(display_surface, GREEN, head_coord)
+    apple_rect = pygame.draw.rect(display_surface, RED, apple_coord)
 
     #update display and tick clock
     pygame.display.update()
