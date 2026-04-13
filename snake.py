@@ -72,6 +72,26 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
+        #move snake
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                snake_dx = -1 * SNAKE_SIZE
+                snake_dy = 0
+            if event.key == pygame.K_RIGHT:
+                snake_dx = SNAKE_SIZE
+                snake_dy = 0
+            if event.key == pygame.K_UP:
+                snake_dx = 0
+                snake_dy = -1 * SNAKE_SIZE
+            if event.key == pygame.K_DOWN:
+                snake_dx = 0
+                snake_dy = SNAKE_SIZE
+
+    #update x,y position of snake head and make new coordinate
+    head_x += snake_dx
+    head_y += snake_dy
+    head_coord = (head_x,head_y, SNAKE_SIZE, SNAKE_SIZE)
+
     display_surface.fill(WHITE)
     #blit HUD
     display_surface.blit(title_text, title_rect)
