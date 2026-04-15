@@ -87,6 +87,11 @@ while running:
                 snake_dx = 0
                 snake_dy = SNAKE_SIZE
 
+    #Add head coordinate to the first index of body coordinate list
+    #this will move the snakes body by one position
+    body_coords.insert(0, head_coord)
+    body_coords.pop()
+
     #update x,y position of snake head and make new coordinate
     head_x += snake_dx
     head_y += snake_dy
