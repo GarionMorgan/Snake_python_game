@@ -101,6 +101,8 @@ while running:
         apple_y = random.randint(0, WINDOW_HEIGHT - SNAKE_SIZE)
         apple_coord = (apple_x, apple_y, SNAKE_SIZE, SNAKE_SIZE)
 
+        body_coords.append(head_coord)
+
     #update HUD
     score_text = font.render("Score: " + str(score), True, GREEN, DARKRED)
 
@@ -110,6 +112,8 @@ while running:
     display_surface.blit(score_text, score_rect)
 
     #blit assests
+    for body in body_coords:
+        pygame.draw.rect(display_surface, DARKGREEN, body)
     head_rect = pygame.draw.rect(display_surface, GREEN, head_coord)
     apple_rect = pygame.draw.rect(display_surface, RED, apple_coord)
 
