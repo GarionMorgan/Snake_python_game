@@ -97,6 +97,34 @@ while running:
     head_y += snake_dy
     head_coord = (head_x,head_y, SNAKE_SIZE, SNAKE_SIZE)
 
+    #check for game over
+    if head_rect.left < 0 or head_rect.right > WINDOW_WIDTH or head_rect.top < 0 or head_rect.bottom > WINDOW_HEIGHT:
+        display_surface.blit(game_over_text, game_over_rect)
+        display_surface.blit(continue_text, continue_rect)
+        pygame.display.update()
+
+        #pause game until player presses a key, then reset game
+        is_paused = True
+        while is_paused:
+            for event in pygame.event.get():
+                #player wants to play again
+                if event.type == pygame.KEYDOWN:
+                    score = 0
+                    head_x = WINDOW_WIDTH//2
+                    head_y = WINDOW_HEIGHT//2 + 100
+                    head_coord = (head_x, head_y, SNAKE_SIZE, SNAKE_SIZE)
+
+                    body_coords = []
+
+                    snake_dx = 0
+                    snake_dy = 0
+
+                    is_paused = False
+                #player wants to quit
+                if event.type == pygame.QUIT:
+                    is_paused = False
+                    running = False
+
     #check for collisions
     if head_rect.colliderect(apple_rect):
         score += 1
